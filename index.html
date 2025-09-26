@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Torn Travel Status</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Torn Travel Status Checker</h1>
+        <div class="input-group">
+            <input type="text" id="apiKeyInput" placeholder="Enter your Torn API Key (16 characters)">
+            <button onclick="checkStatus()">Check Status</button>
+        </div>
+        
+        <div id="statusDisplay" class="hidden">
+            <p id="description">Checking...</p>
+            <div class="animation-container">
+                <div id="statusIcon" class="icon"></div>
+                <div id="plane" class="plane-icon hidden">
+                    <i class="fas fa-plane"></i>
+                </div>
+            </div>
+            <p id="details"></p>
+        </div>
+
+        <div id="errorDisplay" class="hidden error">
+            <p>An error occurred or the API key is invalid.</p>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
