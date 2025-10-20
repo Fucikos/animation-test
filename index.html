@@ -1,36 +1,273 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Torn Travel Status</title>
-    <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Fucikos Site — Welcome</title>
+  
+  <script defer data-domain="fucikos.site" src="https://plausible.io/js/script.js"></script>
+
+  <style>
+    /* Light Mode (Default) Variables */
+    :root {
+      --accent: #9333ea;
+      --bg: #ffffff;
+      --card: #f9f9f9;
+      --text: #1f2937;
+      --line: #e5e7eb;
+      --link-bg: #f0f3ff;
+      --footer-text: #6b7280;
+    }
+
+    /* Dark Mode Variables */
+    [data-theme="dark"] {
+      --accent: #a78bfa;
+      --bg: #111827;
+      --card: #1f2937;
+      --text: #f9fafb;
+      --line: #374151;
+      --link-bg: #374151;
+      --footer-text: #9ca3af;
+    }
+
+    html, body {
+      height: 100%;
+      margin: 0;
+      font-family: Inter, system-ui, Segoe UI, Roboto, 'Helvetica Neue', Arial;
+      transition: background-color 0.3s ease, color 0.3s ease;
+    }
+
+    body {
+      background-color: var(--bg);
+      color: var(--text);
+    }
+
+    .container {
+      max-width: 980px;
+      margin: 28px auto;
+      padding: 22px;
+    }
+
+    header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between; /* Aligns items on opposite ends */
+      gap: 18px;
+      border-bottom: 2px solid var(--accent);
+      padding-bottom: 20px;
+      margin-bottom: 20px;
+    }
+
+    .header-content {
+        display: flex;
+        align-items: center;
+        gap: 18px;
+    }
+
+    h1 {
+      margin: 0;
+      font-size: 28px;
+      color: var(--accent);
+    }
+
+    h2 {
+      color: var(--accent);
+      margin-top: 0;
+      border-left: 4px solid var(--accent);
+      padding-left: 10px;
+    }
+
+    p.lead {
+      margin: 6px 0 0;
+      color: var(--text);
+      font-size: 1.1em;
+    }
+
+    .card {
+      background: var(--card);
+      border-radius: 12px;
+      padding: 20px;
+      margin-bottom: 20px;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+      border: 1px solid var(--line);
+      color: var(--text);
+      transition: background-color 0.3s ease, border-color 0.3s ease;
+    }
+
+    .links {
+      display: flex;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+
+    .link {
+      flex: 1 1 200px;
+      padding: 18px;
+      border-radius: 10px;
+      background: var(--link-bg);
+      border: 1px solid var(--accent);
+      text-decoration: none;
+      color: var(--text);
+      transition: all 0.2s ease;
+    }
+    
+    .link:hover {
+      background: var(--accent);
+      color: var(--card);
+      box-shadow: 0 4px 10px rgba(147, 51, 234, 0.4);
+      transform: translateY(-2px);
+    }
+
+    .link h3 {
+      margin: 0 0 4px;
+      font-size: 18px;
+      color: var(--accent);
+      transition: color 0.2s ease;
+    }
+    
+    .link:hover h3 {
+      color: var(--card);
+    }
+
+    .small {
+      font-size: 14px;
+      color: var(--text);
+      opacity: 0.8;
+      transition: color 0.2s ease;
+    }
+    
+    .link:hover .small {
+      color: var(--card);
+      opacity: 1;
+    }
+
+    footer {
+      margin-top: 30px;
+      color: var(--footer-text);
+      font-size: 13px;
+      text-align: center;
+      padding-top: 15px;
+      border-top: 1px solid var(--line);
+    }
+
+    .avatar {
+      max-width: 120px;
+      border-radius: 50%;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+      border: 3px solid var(--accent);
+    }
+
+    /* Theme Toggle Button Styles */
+    #theme-toggle {
+        cursor: pointer;
+        background: transparent;
+        border: 1px solid var(--accent);
+        color: var(--text);
+        border-radius: 8px;
+        padding: 6px;
+        font-size: 20px; /* For emoji icon */
+        line-height: 1;
+        width: 40px;
+        height: 40px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: all 0.2s ease;
+    }
+
+    #theme-toggle:hover {
+        background: var(--accent);
+        color: var(--bg);
+    }
+
+  </style>
 </head>
 <body>
-    <div class="container">
-        <h1>Torn Travel Status Checker</h1>
-        <div class="input-group">
-            <input type="text" id="apiKeyInput" placeholder="Enter your Torn API Key (16 characters)">
-            <button onclick="checkStatus()">Check Status</button>
+  <div class="container">
+    <header>
+      <div class="header-content">
+        <img src="fucikos.jpg" alt="Fucikos logo" class="avatar">
+        <div>
+          <h1>Fucikos Site — Homepage</h1>
+          <p class="lead">Landing page with quick links to Bazaar, Trade, TornExchange, and Trading Post.</p>
         </div>
-        
-        <div id="statusDisplay" class="hidden">
-            <p id="description">Checking...</p>
-            <div class="animation-container">
-                <div id="statusIcon" class="icon"></div>
-                <div id="plane" class="plane-icon hidden">
-                    <i class="fas fa-plane"></i>
-                </div>
-            </div>
-            <p id="details"></p>
-        </div>
+      </div>
+      <button id="theme-toggle" title="Toggle theme">🌙</button>
+    </header>
 
-        <div id="errorDisplay" class="hidden error">
-            <p>An error occurred or the API key is invalid.</p>
-        </div>
-    </div>
+    <section class="card">
+      <h2>Quick Links</h2>
+      <div class="links">
+        <a class="link" href="https://www.torn.com/bazaar.php?userId=3859772#" target="_blank" rel="noopener">
+          <h3>Bazaar</h3>
+          <div class="small">Opens the Torn Bazaar.</div>
+        </a>
 
-    <script src="script.js"></script>
+        <a class="link" href="https://www.torn.com/trade.php#step=start&userID=3859772" target="_blank" rel="noopener">
+          <h3>Trade</h3>
+          <div class="small">Opens the trade request page directly with me.</div>
+        </a>
+
+        <a class="link" href="https://www.tornexchange.com/prices/Fucikos/" target="_blank" rel="noopener">
+          <h3>TornExchange</h3>
+          <div class="small">Shows my prices of losses and buying items.</div>
+        </a>
+
+        <a class="link" href="https://www.torn.com/profiles.php?XID=3859772" target="_blank" rel="noopener">
+          <h3>My Profile</h3>
+          <div class="small">Opens my Torn profile page.</div>
+        </a>
+
+        <a class="link" href="https://www.torn.com/forums.php#/p=threads&f=10&t=16510862&b=0&a=0" target="_blank" rel="noopener">
+          <h3>Trading Post</h3>
+          <div class="small">Visit my Trading Post thread on the Torn forums.</div>
+        </a>
+      </div>
+    </section>
+
+    <footer>
+      © 2025 Fucikos Bazaar. All rights reserved. | Built for Torn City.
+    </footer>
+  </div>
+
+  <script>
+    const themeToggle = document.getElementById('theme-toggle');
+    const htmlEl = document.documentElement;
+
+    // Function to set the theme and update the icon
+    const setTheme = (theme) => {
+      if (theme === 'dark') {
+        htmlEl.setAttribute('data-theme', 'dark');
+        themeToggle.textContent = '☀️'; // Sun icon when in dark mode
+        localStorage.setItem('theme', 'dark');
+      } else {
+        htmlEl.removeAttribute('data-theme');
+        themeToggle.textContent = '🌙'; // Moon icon when in light mode
+        localStorage.setItem('theme', 'light');
+      }
+    };
+
+    // Add click event listener to the toggle button
+    themeToggle.addEventListener('click', () => {
+      const currentTheme = localStorage.getItem('theme') || 'light';
+      if (currentTheme === 'light') {
+        setTheme('dark');
+      } else {
+        setTheme('light');
+      }
+    });
+
+    // Check for saved theme in localStorage or user's OS preference on page load
+    const savedTheme = localStorage.getItem('theme');
+    const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+
+    if (savedTheme) {
+      setTheme(savedTheme);
+    } else if (prefersDark) {
+      setTheme('dark');
+    } else {
+      setTheme('light'); // Default to light mode and set the initial icon
+    }
+  </script>
 </body>
 </html>
